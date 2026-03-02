@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+	<key>PayloadDisplayName</key>
+	<string>DeadCow Streaming</string>
+
+	<key>PayloadDescription</key>
+	<string>Application DeadCow Streaming avec bloqueur de publicités (DNS AdGuard + listes EasyList/uBlock).</string>
+
+	<key>PayloadIdentifier</key>
+	<string>com.deadcow.streaming.profile</string>
+
+	<key>PayloadOrganization</key>
+	<string>DeadCow</string>
+
+	<key>PayloadType</key>
+	<string>Configuration</string>
+
+	<key>PayloadUUID</key>
+	<string>61a8f5de-ec36-4b44-b363-7bd08a1aee37</string>
+
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+
+	<key>PayloadContent</key>
+	<array>
+
+		<!-- 1. WEBCLIP -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.webClip.managed</string>
+
+			<key>PayloadIdentifier</key>
+			<string>com.deadcow.streaming.webclip</string>
+
+			<key>PayloadUUID</key>
+			<string>3c20606f-146a-4b28-9567-7bf5ce85de9d</string>
+
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+
+			<key>PayloadDisplayName</key>
+			<string>DeadCow Streaming - WebClip</string>
+
+			<key>Label</key>
+			<string>DeadCow</string>
+
+			<key>URL</key>
+			<string>https://deadcow-streamingg-nhj5.onrender.com</string>
+
+			<key>FullScreen</key>
+			<true/>
+
+			<key>IsRemovable</key>
+			<false/>
+
+			<key>Precomposed</key>
+			<true/>
+		</dict>
+
+		<!-- 2. DNS ANTI-PUB (EasyList + EasyPrivacy + uBlock via AdGuard) -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+
+			<key>PayloadIdentifier</key>
+			<string>com.deadcow.streaming.dns</string>
+
+			<key>PayloadUUID</key>
+			<string>d7c5038c-6cf8-4193-bb78-39778fe1519b</string>
+
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+
+			<key>PayloadDisplayName</key>
+			<string>Bloqueur Pub uBlock Style</string>
+
+			<key>DNSSettings</key>
+			<dict>
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
+				</array>
+
+				<key>OnDemandRules</key>
+				<array>
+					<dict>
+						<key>Action</key>
+						<string>Disconnect</string>
+						<key>DomainMatch</key>
+						<array>
+							<string>deadcow-streamingg-nhj5.onrender.com</string>
+							<string>onrender.com</string>
+							<string>vidzy.live</string>
+							<string>vidsrc.to</string>
+							<string>vidsrc.me</string>
+							<string>vidsrc.xyz</string>
+							<string>embed.su</string>
+							<string>multiembed.mov</string>
+							<string>smashystream.com</string>
+							<string>player.videasy.net</string>
+							<string>filemoon.sx</string>
+							<string>streamtape.com</string>
+							<string>doodstream.com</string>
+							<string>upstream.to</string>
+							<string>mixdrop.co</string>
+							<string>cloudflare.com</string>
+							<string>cloudflarestream.com</string>
+							<string>jwplatform.com</string>
+							<string>jwpcdn.com</string>
+							<string>fastly.net</string>
+							<string>akamaized.net</string>
+							<string>cdnjs.cloudflare.com</string>
+							<string>tmdb.org</string>
+							<string>themoviedb.org</string>
+							<string>image.tmdb.org</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Action</key>
+						<string>Connect</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+
+	</array>
+</dict>
+</plist>
