@@ -4,22 +4,22 @@
 <dict>
 
 	<key>PayloadDisplayName</key>
-	<string>DeadCow Streaming</string>
+	<string>Reacher</string>
 
 	<key>PayloadDescription</key>
-	<string>Application DeadCow Streaming avec bloqueur de publicités (DNS AdGuard + listes EasyList/uBlock).</string>
+	<string>Application Reacher Streaming.</string>
 
 	<key>PayloadIdentifier</key>
-	<string>com.deadcow.streaming.profile</string>
+	<string>com.reacher.streaming.profile</string>
 
 	<key>PayloadOrganization</key>
-	<string>DeadCow</string>
+	<string>Reacher</string>
 
 	<key>PayloadType</key>
 	<string>Configuration</string>
 
 	<key>PayloadUUID</key>
-	<string>61a8f5de-ec36-4b44-b363-7bd08a1aee37</string>
+	<string>ed1c4f71-e990-4eab-bdd6-fb81df5dc61a</string>
 
 	<key>PayloadVersion</key>
 	<integer>1</integer>
@@ -30,28 +30,27 @@
 	<key>PayloadContent</key>
 	<array>
 
-		<!-- 1. WEBCLIP -->
 		<dict>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
 
 			<key>PayloadIdentifier</key>
-			<string>com.deadcow.streaming.webclip</string>
+			<string>com.reacher.streaming.webclip</string>
 
 			<key>PayloadUUID</key>
-			<string>3c20606f-146a-4b28-9567-7bf5ce85de9d</string>
+			<string>e7e5fb58-682a-44e9-8b2a-4e425e72dbca</string>
 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 
 			<key>PayloadDisplayName</key>
-			<string>DeadCow Streaming - WebClip</string>
+			<string>Reacher - WebClip</string>
 
 			<key>Label</key>
-			<string>DeadCow</string>
+			<string>Reacher</string>
 
 			<key>URL</key>
-			<string>https://deadcow-streamingg-nhj5.onrender.com</string>
+			<string>http://sentinet.x10.mx/reacher/</string>
 
 			<key>FullScreen</key>
 			<true/>
@@ -63,22 +62,21 @@
 			<true/>
 		</dict>
 
-		<!-- 2. DNS ANTI-PUB (EasyList + EasyPrivacy + uBlock via AdGuard) -->
 		<dict>
 			<key>PayloadType</key>
 			<string>com.apple.dnsSettings.managed</string>
 
 			<key>PayloadIdentifier</key>
-			<string>com.deadcow.streaming.dns</string>
+			<string>com.reacher.streaming.dns</string>
 
 			<key>PayloadUUID</key>
-			<string>d7c5038c-6cf8-4193-bb78-39778fe1519b</string>
+			<string>7cd3030e-5198-41ea-8bb7-51a2aa992b13</string>
 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 
 			<key>PayloadDisplayName</key>
-			<string>Bloqueur Pub uBlock Style</string>
+			<string>Bloqueur Pub</string>
 
 			<key>DNSSettings</key>
 			<dict>
@@ -103,28 +101,23 @@
 						<string>Disconnect</string>
 						<key>DomainMatch</key>
 						<array>
-							<string>deadcow-streamingg-nhj5.onrender.com</string>
-							<string>onrender.com</string>
+							<string>sentinet.x10.mx</string>
+							<string>x10.mx</string>
+							<string>cloudflare.com</string>
+							<string>cloudflarestream.com</string>
+							<string>fastly.net</string>
+							<string>akamaized.net</string>
+							<string>jwplatform.com</string>
+							<string>jwpcdn.com</string>
 							<string>vidzy.live</string>
 							<string>vidsrc.to</string>
 							<string>vidsrc.me</string>
-							<string>vidsrc.xyz</string>
 							<string>embed.su</string>
 							<string>multiembed.mov</string>
 							<string>smashystream.com</string>
-							<string>player.videasy.net</string>
 							<string>filemoon.sx</string>
 							<string>streamtape.com</string>
 							<string>doodstream.com</string>
-							<string>upstream.to</string>
-							<string>mixdrop.co</string>
-							<string>cloudflare.com</string>
-							<string>cloudflarestream.com</string>
-							<string>jwplatform.com</string>
-							<string>jwpcdn.com</string>
-							<string>fastly.net</string>
-							<string>akamaized.net</string>
-							<string>cdnjs.cloudflare.com</string>
 							<string>tmdb.org</string>
 							<string>themoviedb.org</string>
 							<string>image.tmdb.org</string>
