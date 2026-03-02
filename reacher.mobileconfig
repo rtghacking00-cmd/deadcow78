@@ -50,7 +50,7 @@
 			<string>Reacher</string>
 
 			<key>URL</key>
-			<string>http://sentinet.x10.mx/reacher/</string>
+			<string>https://sentinet.x10.mx/reacher/</string>
 
 			<key>FullScreen</key>
 			<true/>
