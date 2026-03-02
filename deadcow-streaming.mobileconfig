@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+
+	<!-- ══════════════════════════════════════════════════════
+	     PROFIL GÉNÉRAL
+	     ══════════════════════════════════════════════════════ -->
+	<key>PayloadDisplayName</key>
+	<string>DeadCow Streaming</string>
+
+	<key>PayloadDescription</key>
+	<string>Installe l'application DeadCow Streaming et bloque les publicités.</string>
+
+	<key>PayloadIdentifier</key>
+	<string>com.deadcow.streaming.profile</string>
+
+	<key>PayloadOrganization</key>
+	<string>DeadCow</string>
+
+	<key>PayloadType</key>
+	<string>Configuration</string>
+
+	<key>PayloadUUID</key>
+	<string>A1B2C3D4-E5F6-7890-ABCD-EF1234567890</string>
+
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+
+	<key>PayloadContent</key>
+	<array>
+
+		<!-- ══════════════════════════════════════════════════
+		     PAYLOAD 1 : WEBCLIP (icône sur l'écran d'accueil)
+		     ══════════════════════════════════════════════════ -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.webClip.managed</string>
+
+			<key>PayloadIdentifier</key>
+			<string>com.deadcow.streaming.webclip</string>
+
+			<key>PayloadUUID</key>
+			<string>B2C3D4E5-F6A7-8901-BCDE-F12345678901</string>
+
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+
+			<key>PayloadDisplayName</key>
+			<string>DeadCow Streaming – WebClip</string>
+
+			<!-- Nom affiché sous l'icône -->
+			<key>Label</key>
+			<string>DeadCow</string>
+
+			<!-- URL du site -->
+			<key>URL</key>
+			<string>https://deadcow-streamingg-nhj5.onrender.com</string>
+
+			<!-- S'ouvre en plein écran (comme une vraie app) -->
+			<key>FullScreen</key>
+			<true/>
+
+			<!-- Empêche la suppression par l'utilisateur -->
+			<key>IsRemovable</key>
+			<false/>
+
+			<!-- Icône : remplacez ce bloc Base64 par votre propre icône PNG 180×180
+			     Ici on laisse Apple générer l'icône automatiquement -->
+			<!--
+			<key>Icon</key>
+			<data>
+				BASE64_DE_VOTRE_ICONE_PNG_ICI
+			</data>
+			-->
+		</dict>
+
+		<!-- ══════════════════════════════════════════════════
+		     PAYLOAD 2 : DNS-OVER-HTTPS (bloqueur de pubs)
+		     Utilise le serveur AdGuard DNS pour bloquer pubs
+		     côté réseau, compatible toutes apps iPhone.
+		     ══════════════════════════════════════════════════ -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.dnsSettings.managed</string>
+
+			<key>PayloadIdentifier</key>
+			<string>com.deadcow.streaming.dns</string>
+
+			<key>PayloadUUID</key>
+			<string>C3D4E5F6-A7B8-9012-CDEF-123456789012</string>
+
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+
+			<key>PayloadDisplayName</key>
+			<string>DNS Anti-pub (uBlock style)</string>
+
+			<key>DNSSettings</key>
+			<dict>
+				<!-- DNS-over-HTTPS : AdGuard (équivalent uBlock côté DNS) -->
+				<key>DNSProtocol</key>
+				<string>HTTPS</string>
+
+				<key>ServerURL</key>
+				<string>https://dns.adguard-dns.com/dns-query</string>
+
+				<!-- Fallback DNS classique -->
+				<key>ServerAddresses</key>
+				<array>
+					<string>94.140.14.14</string>
+					<string>94.140.15.15</string>
+				</array>
+
+				<!-- On exclut le domaine du site pour ne pas se bloquer soi-même -->
+				<key>OnDemandRules</key>
+				<array>
+					<dict>
+						<key>Action</key>
+						<string>Disconnect</string>
+						<key>DomainMatch</key>
+						<array>
+							<string>deadcow-streamingg-nhj5.onrender.com</string>
+						</array>
+					</dict>
+					<dict>
+						<key>Action</key>
+						<string>Connect</string>
+					</dict>
+				</array>
+			</dict>
+		</dict>
+
+	</array>
+</dict>
+</plist>
