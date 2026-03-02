@@ -3,14 +3,11 @@
 <plist version="1.0">
 <dict>
 
-	<!-- ══════════════════════════════════════════════════════
-	     PROFIL GÉNÉRAL
-	     ══════════════════════════════════════════════════════ -->
 	<key>PayloadDisplayName</key>
 	<string>DeadCow Streaming</string>
 
 	<key>PayloadDescription</key>
-	<string>Installe l'application DeadCow Streaming et bloque les publicités.</string>
+	<string>Application DeadCow Streaming avec bloqueur de publicités intégré (uBlock style).</string>
 
 	<key>PayloadIdentifier</key>
 	<string>com.deadcow.streaming.profile</string>
@@ -33,9 +30,9 @@
 	<key>PayloadContent</key>
 	<array>
 
-		<!-- ══════════════════════════════════════════════════
-		     PAYLOAD 1 : WEBCLIP (icône sur l'écran d'accueil)
-		     ══════════════════════════════════════════════════ -->
+		<!-- ══════════════════════════════════════════
+		     1. WEBCLIP — Icône sur l'écran d'accueil
+		     ══════════════════════════════════════════ -->
 		<dict>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
@@ -52,37 +49,30 @@
 			<key>PayloadDisplayName</key>
 			<string>DeadCow Streaming – WebClip</string>
 
-			<!-- Nom affiché sous l'icône -->
 			<key>Label</key>
 			<string>DeadCow</string>
 
-			<!-- URL du site -->
 			<key>URL</key>
 			<string>https://deadcow-streamingg-nhj5.onrender.com</string>
 
-			<!-- S'ouvre en plein écran (comme une vraie app) -->
 			<key>FullScreen</key>
 			<true/>
 
-			<!-- Empêche la suppression par l'utilisateur -->
 			<key>IsRemovable</key>
 			<false/>
 
-			<!-- Icône : remplacez ce bloc Base64 par votre propre icône PNG 180×180
-			     Ici on laisse Apple générer l'icône automatiquement -->
-			<!--
-			<key>Icon</key>
-			<data>
-				BASE64_DE_VOTRE_ICONE_PNG_ICI
-			</data>
-			-->
+			<key>Precomposed</key>
+			<true/>
 		</dict>
 
-		<!-- ══════════════════════════════════════════════════
-		     PAYLOAD 2 : DNS-OVER-HTTPS (bloqueur de pubs)
-		     Utilise le serveur AdGuard DNS pour bloquer pubs
-		     côté réseau, compatible toutes apps iPhone.
-		     ══════════════════════════════════════════════════ -->
+		<!-- ══════════════════════════════════════════
+		     2. DNS-OVER-HTTPS — Bloqueur pub uBlock style
+		     AdGuard DNS intègre les listes :
+		     - EasyList (uBlock Origin)
+		     - EasyPrivacy
+		     - AdGuard Base Filter
+		     - Peter Lowe's list
+		     ══════════════════════════════════════════ -->
 		<dict>
 			<key>PayloadType</key>
 			<string>com.apple.dnsSettings.managed</string>
@@ -97,41 +87,192 @@
 			<integer>1</integer>
 
 			<key>PayloadDisplayName</key>
-			<string>DNS Anti-pub (uBlock style)</string>
+			<string>Bloqueur Pub uBlock Style</string>
 
 			<key>DNSSettings</key>
 			<dict>
-				<!-- DNS-over-HTTPS : AdGuard (équivalent uBlock côté DNS) -->
 				<key>DNSProtocol</key>
 				<string>HTTPS</string>
 
 				<key>ServerURL</key>
 				<string>https://dns.adguard-dns.com/dns-query</string>
 
-				<!-- Fallback DNS classique -->
 				<key>ServerAddresses</key>
 				<array>
 					<string>94.140.14.14</string>
 					<string>94.140.15.15</string>
+					<string>2a10:50c0::ad1:ff</string>
+					<string>2a10:50c0::ad2:ff</string>
 				</array>
 
-				<!-- On exclut le domaine du site pour ne pas se bloquer soi-même -->
 				<key>OnDemandRules</key>
 				<array>
+					<!-- Exclure site DeadCow + CDN vidéo -->
 					<dict>
 						<key>Action</key>
 						<string>Disconnect</string>
 						<key>DomainMatch</key>
 						<array>
 							<string>deadcow-streamingg-nhj5.onrender.com</string>
+							<string>onrender.com</string>
+							<string>vidzy.live</string>
+							<string>vidsrc.to</string>
+							<string>vidsrc.me</string>
+							<string>embed.su</string>
+							<string>multiembed.mov</string>
+							<string>smashystream.com</string>
+							<string>player.videasy.net</string>
+							<string>filemoon.sx</string>
+							<string>streamtape.com</string>
+							<string>doodstream.com</string>
+							<string>upstream.to</string>
+							<string>mixdrop.co</string>
+							<string>cloudflare.com</string>
+							<string>cloudflarestream.com</string>
+							<string>jwplatform.com</string>
+							<string>jwpcdn.com</string>
+							<string>fastly.net</string>
+							<string>akamaized.net</string>
+							<string>cdnjs.cloudflare.com</string>
 						</array>
 					</dict>
+					<!-- Tout le reste : DNS anti-pub activé -->
 					<dict>
 						<key>Action</key>
 						<string>Connect</string>
 					</dict>
 				</array>
 			</dict>
+		</dict>
+
+		<!-- ══════════════════════════════════════════
+		     3. CONTENT FILTER — Blocage domaines pub
+		     Extrait des listes uBlock Origin
+		     ══════════════════════════════════════════ -->
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.webcontent-filter</string>
+
+			<key>PayloadIdentifier</key>
+			<string>com.deadcow.streaming.contentfilter</string>
+
+			<key>PayloadUUID</key>
+			<string>D4E5F6A7-B8C9-0123-DEFA-234567890123</string>
+
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+
+			<key>PayloadDisplayName</key>
+			<string>Filtre Contenu Anti-Pub</string>
+
+			<key>FilterType</key>
+			<string>BuiltIn</string>
+
+			<key>AutoFilterEnabled</key>
+			<true/>
+
+			<key>FilterBrowsers</key>
+			<true/>
+
+			<key>FilterSockets</key>
+			<true/>
+
+			<key>BlacklistedURLs</key>
+			<array>
+				<!-- Google Ads -->
+				<string>doubleclick.net</string>
+				<string>googleadservices.com</string>
+				<string>googlesyndication.com</string>
+				<string>google-analytics.com</string>
+				<string>googletagmanager.com</string>
+				<string>googletagservices.com</string>
+				<string>adservice.google.com</string>
+				<!-- Facebook Ads -->
+				<string>graph.facebook.com</string>
+				<string>connect.facebook.net</string>
+				<string>pixel.facebook.com</string>
+				<!-- Réseaux pub tiers -->
+				<string>ads.yahoo.com</string>
+				<string>advertising.com</string>
+				<string>adnxs.com</string>
+				<string>adsrvr.org</string>
+				<string>rubiconproject.com</string>
+				<string>openx.net</string>
+				<string>pubmatic.com</string>
+				<string>smartadserver.com</string>
+				<string>criteo.com</string>
+				<string>criteo.net</string>
+				<string>taboola.com</string>
+				<string>outbrain.com</string>
+				<string>revcontent.com</string>
+				<string>mgid.com</string>
+				<string>media.net</string>
+				<string>moatads.com</string>
+				<string>amazon-adsystem.com</string>
+				<string>scorecardresearch.com</string>
+				<string>quantserve.com</string>
+				<string>comscore.com</string>
+				<string>chartbeat.com</string>
+				<string>hotjar.com</string>
+				<string>fullstory.com</string>
+				<string>mixpanel.com</string>
+				<string>segment.com</string>
+				<string>segment.io</string>
+				<string>adroll.com</string>
+				<string>propellerads.com</string>
+				<string>popads.net</string>
+				<string>popcash.net</string>
+				<string>exoclick.com</string>
+				<string>trafficjunky.net</string>
+				<string>juicyads.com</string>
+				<string>plugrush.com</string>
+				<!-- Trackers -->
+				<string>bat.bing.com</string>
+				<string>analytics.twitter.com</string>
+				<string>ads.twitter.com</string>
+				<string>snap.licdn.com</string>
+				<string>px.ads.linkedin.com</string>
+			</array>
+
+			<key>WhitelistedBookmarks</key>
+			<array>
+				<dict>
+					<key>Title</key>
+					<string>DeadCow Streaming</string>
+					<key>URL</key>
+					<string>https://deadcow-streamingg-nhj5.onrender.com</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>Vidzy</string>
+					<key>URL</key>
+					<string>https://vidzy.live</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>VidSrc</string>
+					<key>URL</key>
+					<string>https://vidsrc.to</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>Embed SU</string>
+					<key>URL</key>
+					<string>https://embed.su</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>MultiEmbed</string>
+					<key>URL</key>
+					<string>https://multiembed.mov</string>
+				</dict>
+				<dict>
+					<key>Title</key>
+					<string>SmashyStream</string>
+					<key>URL</key>
+					<string>https://smashystream.com</string>
+				</dict>
+			</array>
 		</dict>
 
 	</array>
