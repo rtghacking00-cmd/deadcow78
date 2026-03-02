@@ -7,7 +7,7 @@
 	<string>DeadCow Streaming</string>
 
 	<key>PayloadDescription</key>
-	<string>Application DeadCow Streaming avec bloqueur de publicités intégré (uBlock style).</string>
+	<string>Application DeadCow Streaming avec bloqueur de publicités (DNS AdGuard + listes EasyList/uBlock).</string>
 
 	<key>PayloadIdentifier</key>
 	<string>com.deadcow.streaming.profile</string>
@@ -19,7 +19,7 @@
 	<string>Configuration</string>
 
 	<key>PayloadUUID</key>
-	<string>58009f81-2d5f-4a16-9e0d-342e4cf36893</string>
+	<string>61a8f5de-ec36-4b44-b363-7bd08a1aee37</string>
 
 	<key>PayloadVersion</key>
 	<integer>1</integer>
@@ -30,9 +30,7 @@
 	<key>PayloadContent</key>
 	<array>
 
-		<!-- ══════════════════════════════════════════
-		     1. WEBCLIP — Icône sur l'écran d'accueil
-		     ══════════════════════════════════════════ -->
+		<!-- 1. WEBCLIP -->
 		<dict>
 			<key>PayloadType</key>
 			<string>com.apple.webClip.managed</string>
@@ -41,13 +39,13 @@
 			<string>com.deadcow.streaming.webclip</string>
 
 			<key>PayloadUUID</key>
-			<string>8358fca7-8093-458c-bd84-46999b23cfc6</string>
+			<string>3c20606f-146a-4b28-9567-7bf5ce85de9d</string>
 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 
 			<key>PayloadDisplayName</key>
-			<string>DeadCow Streaming – WebClip</string>
+			<string>DeadCow Streaming - WebClip</string>
 
 			<key>Label</key>
 			<string>DeadCow</string>
@@ -65,14 +63,7 @@
 			<true/>
 		</dict>
 
-		<!-- ══════════════════════════════════════════
-		     2. DNS-OVER-HTTPS — Bloqueur pub uBlock style
-		     AdGuard DNS intègre les listes :
-		     - EasyList (uBlock Origin)
-		     - EasyPrivacy
-		     - AdGuard Base Filter
-		     - Peter Lowe's list
-		     ══════════════════════════════════════════ -->
+		<!-- 2. DNS ANTI-PUB (EasyList + EasyPrivacy + uBlock via AdGuard) -->
 		<dict>
 			<key>PayloadType</key>
 			<string>com.apple.dnsSettings.managed</string>
@@ -81,7 +72,7 @@
 			<string>com.deadcow.streaming.dns</string>
 
 			<key>PayloadUUID</key>
-			<string>c33adc98-3f75-406d-ab5f-ad445a92ae78</string>
+			<string>d7c5038c-6cf8-4193-bb78-39778fe1519b</string>
 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
@@ -107,7 +98,6 @@
 
 				<key>OnDemandRules</key>
 				<array>
-					<!-- Exclure site DeadCow + CDN vidéo -->
 					<dict>
 						<key>Action</key>
 						<string>Disconnect</string>
@@ -118,6 +108,7 @@
 							<string>vidzy.live</string>
 							<string>vidsrc.to</string>
 							<string>vidsrc.me</string>
+							<string>vidsrc.xyz</string>
 							<string>embed.su</string>
 							<string>multiembed.mov</string>
 							<string>smashystream.com</string>
@@ -134,9 +125,11 @@
 							<string>fastly.net</string>
 							<string>akamaized.net</string>
 							<string>cdnjs.cloudflare.com</string>
+							<string>tmdb.org</string>
+							<string>themoviedb.org</string>
+							<string>image.tmdb.org</string>
 						</array>
 					</dict>
-					<!-- Tout le reste : DNS anti-pub activé -->
 					<dict>
 						<key>Action</key>
 						<string>Connect</string>
