@@ -19,7 +19,7 @@
 	<string>Configuration</string>
 
 	<key>PayloadUUID</key>
-	<string>A1B2C3D4-E5F6-7890-ABCD-EF1234567890</string>
+	<string>58009f81-2d5f-4a16-9e0d-342e4cf36893</string>
 
 	<key>PayloadVersion</key>
 	<integer>1</integer>
@@ -41,7 +41,7 @@
 			<string>com.deadcow.streaming.webclip</string>
 
 			<key>PayloadUUID</key>
-			<string>B2C3D4E5-F6A7-8901-BCDE-F12345678901</string>
+			<string>8358fca7-8093-458c-bd84-46999b23cfc6</string>
 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
@@ -81,7 +81,7 @@
 			<string>com.deadcow.streaming.dns</string>
 
 			<key>PayloadUUID</key>
-			<string>C3D4E5F6-A7B8-9012-CDEF-123456789012</string>
+			<string>c33adc98-3f75-406d-ab5f-ad445a92ae78</string>
 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
@@ -157,7 +157,7 @@
 			<string>com.deadcow.streaming.contentfilter</string>
 
 			<key>PayloadUUID</key>
-			<string>D4E5F6A7-B8C9-0123-DEFA-234567890123</string>
+			<string>cd24b729-0dac-4875-bb82-eefc87e4bf15</string>
 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
